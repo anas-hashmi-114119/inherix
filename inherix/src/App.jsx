@@ -65,9 +65,22 @@ function App() {
         <aside className="hidden lg:flex w-[260px] flex-col gap-6">
           <div className="rounded-[32px] border border-white/10 bg-[#0d1126]/80 p-6 shadow-[0_30px_80px_rgba(5,8,22,0.35)]">
             <div className="mb-8">
-              <div className="mb-4 flex items-center gap-3 text-sm text-slate-300 uppercase tracking-[0.25em]">
-                <span className="inline-block h-8 w-8 rounded-2xl bg-gradient-to-br from-violet-500 to-sky-500 text-center leading-8 font-bold">C++</span>
-                OOPPractice
+              <div className="mb-4 flex items-center gap-3">
+                <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-gradient-to-br from-sky-500 to-violet-600 shadow-[0_12px_30px_rgba(56,189,248,0.24)]">
+                  <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.42),_transparent_55%)]" />
+                  <svg viewBox="0 0 64 64" className="relative h-7 w-7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="44" height="44" rx="14" stroke="rgba(255,255,255,0.28)" strokeWidth="1.2" />
+                    <path d="M32 18v28" stroke="white" strokeWidth="4" strokeLinecap="round" />
+                    <path d="M22 30l10-10 10 10" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M22 40l10 10 10-10" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="32" cy="18" r="3.4" fill="white" />
+                    <circle cx="32" cy="46" r="3.4" fill="white" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="bg-gradient-to-r from-sky-300 via-cyan-200 to-violet-300 bg-clip-text text-sm font-semibold uppercase tracking-[0.28em] text-transparent">inherix</div>
+                  <div className="text-[10px] uppercase tracking-[0.34em] text-slate-400">intelligent practice</div>
+                </div>
               </div>
               <h1 className="text-2xl font-semibold">Home</h1>
             </div>
@@ -116,7 +129,7 @@ function App() {
               <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                 <div className="max-w-2xl">
                   <span className="rounded-full border border-sky-400/20 bg-sky-400/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-sky-300">Practice. Code. Master</span>
-                  <h1 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">OOP in C++</h1>
+                  <h1 className="mt-3 bg-gradient-to-r from-sky-200 via-white to-violet-200 bg-clip-text text-3xl font-semibold leading-tight text-transparent sm:text-4xl">inherix</h1>
                   <p className="mt-2 max-w-xl text-sm text-slate-300">Build confidence through guided problems, elegant challenges, and a premium learning experience.</p>
                   <div className="mt-4 flex flex-wrap gap-2.5">
                     <button className="rounded-2xl bg-gradient-to-r from-sky-500 to-violet-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-500/20 transition hover:scale-[1.02]">Solve Problems</button>
@@ -125,7 +138,17 @@ function App() {
                 </div>
                 <div className="relative hidden h-44 w-44 rounded-[28px] border border-white/10 bg-white/5 p-5 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] lg:flex lg:flex-col lg:justify-center lg:items-center">
                   <div className="absolute inset-0 rounded-[28px] bg-[radial-gradient(circle,_rgba(14,165,233,0.16),_transparent_60%)]" />
-                  <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-violet-500 text-2xl font-semibold shadow-lg shadow-sky-500/20">C++</div>
+                  <div className="relative flex h-16 w-16 items-center justify-center rounded-[22px] border border-white/15 bg-gradient-to-br from-sky-500 to-violet-600 shadow-[0_14px_36px_rgba(56,189,248,0.28)]">
+                    <div className="absolute inset-0 rounded-[22px] bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.45),_transparent_55%)]" />
+                    <svg viewBox="0 0 64 64" className="relative h-9 w-9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="10" y="10" width="44" height="44" rx="14" stroke="rgba(255,255,255,0.28)" strokeWidth="1.2" />
+                      <path d="M32 18v28" stroke="white" strokeWidth="4" strokeLinecap="round" />
+                      <path d="M22 30l10-10 10 10" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M22 40l10 10 10-10" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="32" cy="18" r="3.4" fill="white" />
+                      <circle cx="32" cy="46" r="3.4" fill="white" />
+                    </svg>
+                  </div>
                   <div className="relative mt-4 text-center text-xs uppercase tracking-[0.3em] text-slate-300">Solve Problems</div>
                 </div>
               </div>
