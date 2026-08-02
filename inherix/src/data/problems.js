@@ -151,18 +151,149 @@ const localData = [
     `,
     percent: 45,
   },
+
+
+  // constructors and destructors
+
   {
     id: 4,
-    topic: 'Polymorphism',
-    title: 'Multi-Account Bank Simulator',
-    difficulty: 'Advanced',
+    topic: 'Constructors & Destructors',
+    title: 'The Auto-Filled Employee Badge',
+    difficulty: 'Easy',
+    statement: `
+      Scenario:
+      A company wants every new employee badge to be automatically initialized the moment it's created — no manual setup step allowed.
+
+      Requirements:
+
+      Class EmployeeBadge with data members: name (string), employeeID (int), department (string).
+      Parameterized constructor that takes all three values and initializes the object directly (no separate setData() function).
+      Default constructor that initializes an "unassigned" badge with placeholder values (e.g., "Unassigned", 0, "None").
+      displayBadge() — prints badge details.
+      Destructor that prints a message like "Badge for [name] destroyed." when the object goes out of scope.
+
+      Expected Behavior:
+
+      In main(), create 2 badges: one using the parameterized constructor (with input values), one using the default constructor.
+      Display both.
+      Let the objects go out of scope naturally (end of main()) and observe destructor messages.
+
+      Constraints:
+
+      No setData()-style function allowed — all initialization must happen via constructors.
+    `,
+  percent: 60
   },
+
   {
     id: 5,
-    topic: 'Inheritance',
-    title: 'Multi-Account Bank Simulator',
+    topic: 'Constructors & Destructors',
+    title: 'Temporary File Handler Simulation',
+    difficulty: 'Medium',
+    statement: `
+    Scenario:
+      You're simulating a simplified "temporary file" system. Every time a TempFile object is created, it should register itself as "opened," and when destroyed, it must clean up by printing that it deleted itself — mimicking real resource management (like RAII in C++).
+
+      Requirements:
+
+      Class TempFile with data members: fileName (string), sizeInKB (int), and a static int activeFilesCount (tracks how many TempFile objects currently exist).
+      
+      Parameterized constructor: sets fileName and sizeInKB, increments activeFilesCount, and prints "[fileName] opened."
+      Destructor: prints "[fileName] deleted. Space freed: [sizeInKB] KB." and decrements activeFilesCount.
+      static void showActiveFiles() — prints how many temp files currently exist.
+
+      Expected Behavior:
+
+      In main(), create 3 TempFile objects inside a nested block { } (not the whole main()), each with different names/sizes taken via input.
+      Call showActiveFiles() inside the block after all 3 are created.
+      Let the block end (objects go out of scope) — destructors should fire automatically.
+      Call showActiveFiles() again after the block ends, to confirm the count dropped back to 0.
+
+      Constraints:
+
+      activeFilesCount must be accurate at all times — no manual increment/decrement outside the constructor/destructor.
+    `,
+    percent: 40
+  },
+
+  {
+    id: 6,
+    topic: 'Constructors & Destructors',
+    title: 'Hotel Room Reservation Lifecycle',
+    difficulty: 'Challenging',
+    statement: `
+      Scenario:
+      A hotel wants to simulate room bookings where a room object represents an active reservation. The moment a reservation is created, the room should be marked "Occupied," and the moment the reservation ends (object destroyed), the room should automatically be marked "Available" again — with a full nightly cost calculated at destruction time.
+
+      Requirements:
+
+      Class Reservation with data members: guestName (string), roomNumber (int), nightlyRate (double), numberOfNights (int).
+      Constructor: takes all 4 values as parameters, prints "Room [roomNumber] reserved for [guestName]."
+      
+      Destructor: calculates totalCost = nightlyRate * numberOfNights and prints a full checkout summary: guest name, room number, nights stayed, and total cost. Then prints "Room [roomNumber] is now available."
+      extendStay(int extraNights) — increases numberOfNights by the given amount and prints confirmation.
+
+      Expected Behavior:
+
+      In main(), use an array of 3 Reservation objects, created inside a function (not main() directly) called runHotelSimulation().
+      Inside that function, take input for all 3 reservations via the constructor (loop through creation).
+      For at least one reservation, call extendStay() before the function ends.
+      When runHotelSimulation() finishes and returns, all 3 objects go out of scope — destructors should fire automatically, printing checkout summaries for all 3.
+
+      Constraints:
+
+      All checkout math (totalCost) must be computed inside the destructor, not stored ahead of time.
+      Must demonstrate destructor firing on function return, not just at program end.
+    `,
+    percent: 30
+  },
+
+  {
+    id: 7,
+    topic: 'Constructors & Destructors',
+    title: 'Multiplayer Game Session Manager',
     difficulty: 'Advanced',
+    statement: `
+      Scenario:
+      You're building a simplified multiplayer game lobby system. Each Player object represents an active player connection. Players join with a constructor call and "disconnect" when their object is destroyed — but there's a twist: you must track a shared session score pool across all players using a static member, and correctly handle both normal destruction and early "kicking" of a player mid-session.
+
+      Requirements:
+
+      Class Player with data members: playerName (string), score (int), playerID (int, auto-generated).
+      Static int nextID — used to auto-assign a unique playerID to each player as they're constructed (no manual ID input).
+      Static int totalSessionScore — running total of all players' scores combined.
+      
+      Constructor: takes playerName and initial score, auto-assigns playerID using nextID (then increments nextID), adds score to totalSessionScore, prints a join message.
+      addPoints(int pts) — increases this player's score and updates totalSessionScore accordingly.
+      
+      Destructor: subtracts this player's current score from totalSessionScore (since they're leaving), and prints a disconnect message showing final score and updated totalSessionScore.
+      static void showSessionStatus() — prints totalSessionScore and how many player slots have been used (nextID).
+
+      Expected Behavior:
+
+      In main(), create an array of 4 Player objects using a loop (parameterized constructor, taking name and starting score via input).
+      Call showSessionStatus() after all are created.
+      
+      Simulate gameplay: use addPoints() on at least 2 players via a loop/menu.
+      Simulate one player being "kicked early" by placing them in a separate nested scope { } that ends before the others (their destructor fires early, mid-main()), and show showSessionStatus() immediately after to prove the total updated correctly.
+      At the end of main(), the remaining players go out of scope naturally — observe final disconnect messages and final session state.
+
+      Constraints:
+
+      totalSessionScore must always reflect only currently connected players at any given moment — verified by calling showSessionStatus() at multiple points.
+      playerID assignment must be fully automatic via the static counter — never manually set.
+    `,
+    percent: 25
   }
+
+
+
+
+
+
+
+
+
 ]
 
 export default localData;

@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ProblemList from './components/ProblemLIst.jsx'
 import ProblemCard from './components/ProblemCard'
 import ProblemDetail from './components/ProblemDetail.jsx'
@@ -33,6 +33,7 @@ function App() {
   const [toggleShowDetail, setToggleShowDetail] = useState(false)
   const [selectedProblemId, setSelectedProblemId] = useState(null)
   const topicCarouselRef = useRef(null)
+  const detailSectionRef = useRef(null)
 
   const handleShowDetail = (id) => {
     if (selectedProblemId === id && toggleShowDetail) {
@@ -58,6 +59,19 @@ function App() {
       behavior: 'smooth',
     })
   }
+
+  useEffect(() => {
+    if (!toggleShowDetail || selectedProblemId === null || !detailSectionRef.current) {
+      return
+    }
+
+    const targetY = detailSectionRef.current.getBoundingClientRect().top + window.scrollY - 96
+
+    window.scrollTo({
+      top: targetY,
+      behavior: 'smooth',
+    })
+  }, [toggleShowDetail, selectedProblemId])
 
   return (
     <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),_transparent_24%),radial-gradient(circle_at_top_right,_rgba(139,92,246,0.24),_transparent_28%),linear-gradient(135deg,_#030712_0%,_#070b1d_45%,_#050816_100%)] px-5 py-5 text-white">
@@ -209,7 +223,9 @@ function App() {
             />
 
             {toggleShowDetail && selectedProblemId !== null && (
-              <ProblemDetail problem={localData.find((item) => item.id === selectedProblemId)} />
+              <div ref={detailSectionRef}>
+                <ProblemDetail problem={localData.find((item) => item.id === selectedProblemId)} />
+              </div>
             )}
           </section>
         </main>
